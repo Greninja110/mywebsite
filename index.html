@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MBIT Login</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Display any success/error messages -->
+  <?php if (!empty($message)): ?>
+      <div class="message"><?php echo htmlspecialchars($message); ?></div>
+  <?php endif; ?>
+
+  <!-- Login Form -->
+  <form method="post" action="index.php">
+      <h1>MBIT Login</h1>
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required placeholder="example@domain.mbit.edu.in">
+
+      <label for="password">Password:</label>
+      <div class="password-container">
+          <!-- Added the name attribute so the value is posted -->
+          <input type="password" name="password" id="password" placeholder="Enter your password">
+          <!-- Toggle Icon -->
+          <img src="hide-eye.png" alt="Toggle Password Visibility" id="togglePassword" class="toggle-password">
+      </div>
+
+      <div class="signup-link">
+          New user? <a href="signup.php">Sign Up</a>
+      </div>
+      <div class="button-group">
+          <button type="reset">Reset</button>
+          <button type="submit">Login</button>
+      </div>
+  </form>
+  <script>
+    // Get references to the password input and toggle icon
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    // Toggle between 'password' and 'text' on click
+    togglePassword.addEventListener('click', function () {
+      if (passwordInput.getAttribute('type') === 'password') {
+          passwordInput.setAttribute('type', 'text');
+          togglePassword.src = 'unhide-eye.png';
+      } else {
+          passwordInput.setAttribute('type', 'password');
+          togglePassword.src = 'hide-eye.png';
+      }
+    });
+  </script>
+</body>
+</html>
